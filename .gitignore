@@ -1,0 +1,19 @@
+# virtual environment
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# rahasia (token X, kunci admin)
+.env
+
+# database lokal
+*.db
+
+# VS Code
+.vscode/
