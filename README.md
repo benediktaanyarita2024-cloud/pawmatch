@@ -52,7 +52,7 @@ python app.py
 | Tahap | Isi | Status |
 |---|---|---|
 | 1 | Struktur proyek dan dataset | Selesai |
-| 2 | Cleaning data | Belum |
+| 2 | Cleaning data | Selesai |
 | 3 | Clustering dan regresi | Belum |
 | 4 | Flask: katalog dan cek kecocokan | Belum |
 | 5 | SQLite dan pengajuan adopsi | Belum |
