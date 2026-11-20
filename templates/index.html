@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="wrap hero">
+  <div class="hero-kartu">
+    <svg class="kilau kilau-1" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z"/></svg>
+    <svg class="kilau kilau-2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12z"/></svg>
+    <div class="hero-teks">
+      <p class="eyebrow">ADOPSI, BUKAN BELI</p>
+      <h1>Temukan anjing yang cocok dengan hidupmu.</h1>
+      <p class="lead">Jawab 4 pertanyaan singkat tentang rumah dan waktu luangmu. Kami cocokkan dengan anjing berdasarkan ukuran, energi, dan sifatnya terhadap anak.</p>
+      <div class="aksi">
+        <a class="tombol" href="{{ url_for('cocok') }}">Cek kecocokan</a>
+        <a class="tombol garis" href="#katalog">Lihat katalog</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="katalog" class="pita">
+<div class="wrap">
+  <div class="kepala-katalog">
+    <div>
+      <h2>Menunggu rumah</h2>
+      <p class="meta">{{ jumlah }} anjing sedang menunggu keluarga baru.</p>
+    </div>
+    <form method="get" action="{{ url_for('beranda') }}#katalog" class="filter">
+      <label>Ukuran
+        <select name="ukuran">
+          <option value="">Semua</option>
+          {% for nilai in ["Small", "Medium", "Large"] %}
+          <option value="{{ nilai }}" {% if ukuran == nilai %}selected{% endif %}>{{ nilai|id }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Kelompok
+        <select name="kelompok">
+          <option value="">Semua</option>
+          {% for nama in daftar_cluster %}
+          <option value="{{ nama }}" {% if kelompok == nama %}selected{% endif %}>{{ nama }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <button type="submit" class="tombol kecil">Terapkan</button>
+    </form>
+  </div>
+
+  <div class="grid">
+    {% for a in anjing %}
+      {% include "_kartu.html" %}
+    {% else %}
+      <p>Tidak ada anjing yang cocok dengan filter ini.</p>
+    {% endfor %}
+  </div>
+
+  {% if total_halaman > 1 %}
+  <nav class="halaman" aria-label="Halaman katalog">
+    {% if halaman > 1 %}
+    <a href="{{ url_for('beranda', ukuran=ukuran, kelompok=kelompok, halaman=halaman-1) }}#katalog">Sebelumnya</a>
+    {% endif %}
+    <span>Halaman {{ halaman }} dari {{ total_halaman }}</span>
+    {% if halaman < total_halaman %}
+    <a href="{{ url_for('beranda', ukuran=ukuran, kelompok=kelompok, halaman=halaman+1) }}#katalog">Berikutnya</a>
+    {% endif %}
+  </nav>
+  {% endif %}
+</div>
+</section>
+{% endblock %}

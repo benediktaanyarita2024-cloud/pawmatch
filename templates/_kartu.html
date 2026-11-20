@@ -1,0 +1,23 @@
+<article class="kartu">
+  <div class="foto c{{ a.cluster }}">{% include "_foto.html" %}</div>
+  <div class="isi">
+    <div class="judul-kartu">
+      <h3>{{ a.nama }}</h3>
+      <span class="meta">{{ a.umur_teks }} · {{ a.MaturitySize|id }}</span>
+    </div>
+    <span class="tag c{{ a.cluster }}">{{ a.cluster_label }}</span>
+    <div class="chips">
+      <span class="chip">Energi {{ a.energi_label|lower }}</span>
+      {% if a.ramah_anak == "Ya" %}
+      <span class="chip">Ramah anak</span>
+      {% elif a.ramah_anak == "Tidak" %}
+      <span class="chip">Kurang cocok dengan anak</span>
+      {% endif %}
+    </div>
+    <p class="ringkas">{{ a.ringkas }}</p>
+    <div class="kaki">
+      <span class="meta">Perkiraan diadopsi: <strong>{{ a.perkiraan_adopsi }}</strong></span>
+      <a href="{{ url_for('detail', anjing_id=a.anjing_id) }}">Lihat</a>
+    </div>
+  </div>
+</article>
