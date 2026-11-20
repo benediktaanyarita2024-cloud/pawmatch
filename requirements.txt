@@ -4,4 +4,6 @@ numpy
 scikit-learn
 joblib
 plotly
+matplotlib
 vaderSentiment
+notebook

@@ -6,12 +6,12 @@ Proyek akhir mata kuliah Aplikasi Web.
 
 ## Fitur
 
-- [ ] Katalog anjing dengan label kelompok (clustering K-Means)
+- [ ] Katalog anjing dengan label kelompok (clustering K-Means, model sudah dilatih)
 - [ ] Cek kecocokan: rekomendasi anjing berdasarkan kondisi calon adopter
 - [ ] Form pengajuan adopsi (disimpan ke SQLite)
 - [ ] Chatbot rule-based untuk pertanyaan seputar adopsi
 - [ ] Halaman admin: tambah anjing, kelola pengajuan, hasil analisis
-- [ ] Prediksi lama adopsi (regresi linear)
+- [ ] Prediksi lama adopsi (regresi linear, model sudah dilatih)
 - [ ] Analisis sentimen deskripsi (VADER) dan tweet (InSet)
 
 ## Dataset
@@ -52,8 +52,8 @@ python app.py
 | Tahap | Isi | Status |
 |---|---|---|
 | 1 | Struktur proyek dan dataset | Selesai |
-| 2 | Cleaning data | Selesai |
-| 3 | Clustering dan regresi | Belum |
+| 2 | Cleaning data (`notebooks/1_cleaning.ipynb`) | Selesai |
+| 3 | Clustering (`notebooks/2_clustering.ipynb`) dan regresi (`notebooks/3_regresi.ipynb`) | Selesai |
 | 4 | Flask: katalog dan cek kecocokan | Belum |
 | 5 | SQLite dan pengajuan adopsi | Belum |
 | 6 | Chatbot | Belum |
