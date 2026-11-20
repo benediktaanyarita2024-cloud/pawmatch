@@ -1,0 +1,6 @@
+{% include "_ikon_anjing.html" %}
+{% if a.foto %}
+<img src="{{ a.foto }}" alt="Foto ilustrasi anjing ras {{ a.Breed1 }}" loading="lazy"
+     onerror="this.closest('.foto').classList.add('gagal')">
+<span class="label-ilustrasi">Foto ilustrasi</span>
+{% endif %}
