@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Cek kecocokan · PawMatch{% endblock %}
+{% block content %}
+<section class="wrap sempit">
+  <p class="eyebrow">CEK KECOCOKAN</p>
+  <h1>Ceritakan sedikit tentang hidupmu.</h1>
+  <p class="lead">Setiap anjing mulai dari skor 100, lalu dikurangi kalau ada ciri yang tidak cocok dengan kondisimu.</p>
+
+  <form method="post" class="form-cocok">
+    {% set label = {"rumah": "Tempat tinggalmu", "waktu": "Waktu luang untuk anjing per hari", "anak": "Ada anak kecil di rumah?", "pengalaman": "Pengalaman memelihara anjing"} %}
+    {% for kunci, opsi in pilihan.items() %}
+    <fieldset>
+      <legend>{{ label[kunci] }}</legend>
+      <div class="opsi">
+        {% for nilai, teks in opsi.items() %}
+        <label class="pil">
+          <input type="radio" name="{{ kunci }}" value="{{ nilai }}" {% if jawaban.get(kunci) == nilai %}checked{% endif %}>
+          <span>{{ teks }}</span>
+        </label>
+        {% endfor %}
+      </div>
+    </fieldset>
+    {% endfor %}
+    {% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+    <button type="submit" class="tombol">Lihat rekomendasi</button>
+  </form>
+</section>
+{% endblock %}

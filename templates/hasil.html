@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Rekomendasi · PawMatch{% endblock %}
+{% block content %}
+<section class="wrap sempit">
+  <p class="eyebrow">HASIL REKOMENDASI</p>
+  <h1>Anjing yang paling cocok denganmu.</h1>
+  <p class="lead">
+    Berdasarkan jawabanmu: {{ ringkasan.rumah|lower }}, waktu luang {{ ringkasan.waktu|lower }},
+    anak kecil {{ ringkasan.anak|lower }}, pengalaman: {{ ringkasan.pengalaman|lower }}.
+  </p>
+
+  <div class="daftar-hasil">
+    {% for a in hasil %}
+    <article class="hasil">
+      <div class="foto kecil c{{ a.cluster }}">{% include "_foto.html" %}</div>
+      <div class="isi">
+        <h2>{{ a.nama }}</h2>
+        <p class="meta">{{ a.umur_teks }} · {{ a.MaturitySize|id }} · energi {{ a.energi_label|lower }} · {{ a.cluster_label }}</p>
+        {% if a.alasan %}<p>Cocok karena {{ a.alasan|join(" dan ") }}.</p>{% endif %}
+        {% if a.catatan %}<p class="meta">Perlu diperhatikan: {{ a.catatan|join("; ") }}.</p>{% endif %}
+        <div class="bar"><div style="width: {{ a.skor }}%"></div></div>
+        <a href="{{ url_for('detail', anjing_id=a.anjing_id) }}">Lihat detail</a>
+      </div>
+      <div class="skor">{{ a.skor }}%<span>cocok</span></div>
+    </article>
+    {% endfor %}
+  </div>
+
+  <div class="aksi">
+    <a class="tombol garis" href="{{ url_for('cocok') }}">Ubah jawaban</a>
+    <a class="tombol" href="{{ url_for('beranda') }}#katalog">Lihat katalog</a>
+  </div>
+</section>
+{% endblock %}
