@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}{{ a.nama }} · PawMatch{% endblock %}
+{% block content %}
+<section class="wrap sempit">
+  <a href="{{ url_for('beranda') }}#katalog">← Kembali ke katalog</a>
+  <div class="detail">
+    <div class="foto besar c{{ a.cluster }}">{% include "_foto.html" %}</div>
+    <div class="isi">
+      <h1>{{ a.nama }}</h1>
+      <span class="tag c{{ a.cluster }}">{{ a.cluster_label }}</span>
+      <dl class="data">
+        <dt>Umur</dt><dd>{{ a.umur_teks }}</dd>
+        <dt>Ras</dt><dd>{{ a.Breed1 }}</dd>
+        <dt>Jenis kelamin</dt><dd>{{ a.Gender|id }}</dd>
+        <dt>Ukuran dewasa</dt><dd>{{ a.MaturitySize|id }}</dd>
+        <dt>Panjang bulu</dt><dd>{{ a.FurLength|id }}</dd>
+        <dt>Energi</dt><dd>{{ a.energi_label }}</dd>
+        <dt>Ramah anak</dt><dd>{% if a.ramah_anak == "Belum tahu" %}Belum diketahui, tanyakan ke shelter{% else %}{{ a.ramah_anak }}{% endif %}</dd>
+        <dt>Vaksin</dt><dd>{{ a.Vaccinated|id }}</dd>
+        <dt>Steril</dt><dd>{{ a.Sterilized|id }}</dd>
+        <dt>Kesehatan</dt><dd>{{ a.Health|id }}</dd>
+        <dt>Biaya adopsi</dt><dd>{% if a.Fee == 0 %}Gratis{% else %}RM {{ a.Fee }}{% endif %}</dd>
+        <dt>Perkiraan diadopsi</dt><dd>{{ a.perkiraan_adopsi }}</dd>
+      </dl>
+    </div>
+  </div>
+  <h2>Deskripsi</h2>
+  <p class="meta">
+    Deskripsi asli dari pemilik (bahasa Inggris).
+    <a href="https://translate.google.com/?sl=en&tl=id&op=translate&text={{ a.Description|urlencode }}" target="_blank" rel="noopener">Terjemahkan ke Bahasa Indonesia</a>
+  </p>
+  <p class="deskripsi">{{ a.Description }}</p>
+  <p class="meta">Form pengajuan adopsi akan ditambahkan di tahap berikutnya.</p>
+</section>
+{% endblock %}
